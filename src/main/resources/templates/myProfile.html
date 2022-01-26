@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+
+
+<div th:replace="common/header :: navbar" />
+<div class="popular-location section-padding30">
+
+
+<div class="container">
+	<ul class="nav nav-pills nav-justified" style="background-color: #0b1c39;">
+		<li class="nav-item nav-link"  th:classappend="${classActiveEdit}? 'active'"><a
+				href="#tab-1" data-toggle="tab"><span>Uredi</span></a></li>
+		<li class="nav-item nav-link"  th:classappend="${classActiveOrders}? 'active'"><a
+				href="#tab-2" data-toggle="tab"><span>Rezervacije</span></a></li>
+		<li class="nav-item nav-link" th:classappend="${classActiveShipping}? 'active'"><a
+				href="#tab-3" data-toggle="tab"><span >Naplata</span></a></li>
+	</ul>
+
+	<!-- Tab panels -->
+	<div class="tab-content">
+		<!-- Edit user information -->
+		<div class="tab-pane fade" id="tab-1" th:classappend="${classActiveEdit}? 'in active'">
+			<div class="panel-group" style="background-color: white;">
+				<div class="panel panel-default">
+					<div class="panel-body">
+
+						<div class="alert alert-danger" th:if="${incorrectPassword}">
+							<strong>Netačna lozinka</strong> Molimo provjerite Vašu lozinku
+						</div>
+						<div class="alert alert-success" th:if="${updateSuccess}">
+							<strong>Podaci su uspješno ažurirani</strong>
+						</div>
+						<form th:action="@{/updateUserInfo}" method="post">
+							<input type="hidden" name="id" th:value="${user.id}"/>
+							<div class="bg-info" th:if="${updateUserInfo}">Podaci o korisniku su ažurirani.</div>
+
+							<div class="form-group">
+								<div class="row">
+									<div class="col-xs-6">
+										<label for="firstName" style="font-size: x-large;">Ime</label>
+										<input type="text" class="form-control" id="firstName" name="firstName" th:value="${user.firstName}"/>
+									</div>
+									<div class="col-xs-6">
+										<label for="lastName" style="font-size: x-large;">Prezime</label>
+										<input type="text" class="form-control"
+											   id="lastName" name="lastName" th:value="${user.lastName}"/>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="userName" style="font-size: x-large;">Korisničko ime</label> ' <input type="text"
+																												  class="form-control"
+																												  id="userName" name="username"
+																												  th:value="${user.username}"/>
+							</div>
+							<div class="form-group">
+								<label for="currentPassword" style="font-size: x-large;">Trenutna lozinka</label> ' <input
+									type="password" class="form-control" id="currentPassword"
+									name="password" th:value="${currentPassword}"/>
+							</div>
+							<p style="color:#828282"> Ukucajte trenutnu lozinku kako biste promijenili korisničko ime i email.</p>
+
+
+							<div class="form-group">
+								<label for="email" style="font-size: x-large;">* Email</label> ' <input
+									type="text" class="form-control" id="email" name="email"
+									th:value="${user.email}"/>
+							</div>
+							<p style="color:#828282"> Ukucajte email adresu.</p>
+
+
+							<div class="form-group">
+								<label for="txtNewPassword" style="font-size: x-large;">Lozinka</label>&nbsp;<span id="checkPasswordMatch" style="color:red;"></span>
+								<input
+										type="password" class="form-control" id="txtNewPassword"
+										name="newPassword"/>
+							</div>
+
+
+							<div class="form-group">
+								<label for="txtConfirmPassword" style="font-size: x-large;">Potvrdite lozinku</label> ' <input
+									type="password" class="form-control" id="txtConfirmPassword"/>
+							</div>
+							<p style="color:#828282">Da biste promijenili lozinku,ukucajte novu lozinku u oba polja.</p>
+
+
+
+							<button id="updateUserInfoButton" type="submit" class="btn btn-primary">Sačuvati</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Informacije o rezervaciji -->
+		<div class="tab-pane fade" id="tab-2"
+			 th:classappend="${classActiveOrders}? 'in active'">
+			<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-body">
+
+						<table class="table table-sm table-inverse">
+							<thead>
+							<tr>
+								<th>Broj rezervacije</th>
+								<th>Ukupno</th>
+								<th>Status</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr th:each="order : ${orderList}">
+								<td><a th:href="@{/orderDetail(id=${order.id})}"></a>
+								<td data-th-text="${order.id}"></td>
+								<td data-th-text="${order.orderTotal}"></td>
+								<td data-th-text="${order.orderStatus}"></td>
+							</tr>
+							</tbody>
+						</table>
+
+						<div th:if="${displayOrderDetail}">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="text-center">
+										<h2>
+											Detalji rezervacije #<span th:text="${order.id}"></span>
+										</h2>
+									</div>
+									<hr />
+
+									<div class="row">
+										<div class="col-xs-4">
+											<div class="panel panel-default height">
+												<div class="panel-heading">
+													<strong>Informacije plaćanja</strong>
+												</div>
+												<div class="panel-body">
+													<span th:text="${order.payment.holderName}">Ime vlasnika kartice</span>
+													<br /> <span th:text="${order.payment.cardNumber}">Broj kartice</span><br /> <span>Datum isteka:</span><span
+														th:text="${order.payment.expiryMonth}"></span>/<span
+														th:text="${order.payment.expiryYear}"></span><br />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+									<div class="panel-heading">
+										<h3 class="text-center">
+											<strong>Pregled rezervacije</strong>
+										</h3>
+									</div>
+									<div class="panel-body">
+										<div class="table-responsive">
+											<table class="table table-condensed">
+												<thead>
+												<tr>
+													<td><strong>Naziv</strong></td>
+													<td class="text-center"><strong>Cijena</strong></td>
+													<td class="text-center"><strong>Broj rezervacija</strong></td>
+													<td class="text-right"><strong>Ukupno</strong></td>
+												</tr>
+												</thead>
+												<tbody>
+												<tr th:each="reservationItem : ${reservationItemList}">
+													<td data-th-text="${reservationItem.tour.title}"></td>
+													<td class="text-center"
+														data-th-text="${reservationItem.tour.price}"></td>
+													<td class="text-center" data-th-text="${reservationItem.qty}"></td>
+													<td class="text-center"
+														data-th-text="${reservationItem.subtotal}"></td>
+												</tr>
+												<tr>
+													<td class="highrow"></td>
+													<td class="highrow"></td>
+													<td class="highrow text-center"><strong>Ukupno</strong></td>
+													<td class="highrow text-right"
+														data-th-text="${order.orderTotal}"></td>
+												</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Informacije plaćanja-->
+		<div class="tab-pane fade" id="tab-3"
+			 th:classappend="${classActiveBilling}? 'in active'">
+			<div class="panel-group">
+				<div class="panel panel-default" style="border: none;">
+								<div class="panel-body"
+									style="background-color: #ededed; margin-top: 20px;">
+							<ol class="breadcrumb" style="background-color: #07d0da;">
+								<li class="breadcrumb-item active" aria-current="page"><a
+										th:href="@{/listOfCreditCards}"
+										th:style="${listOfCreditCards}? 'color:black'"><strong>Lista kreditnih kartica</strong></a></li>
+								<li class="breadcrumb-item active"><a
+										th:href="@{/addNewCreditCard}"
+										th:style="${addNewCreditCard}? 'color:black'"><strong>Dodaj kreditnu karticu</strong></a></li>
+							</ol>
+
+						<div th:if="${listOfCreditCards}">
+							<form th:action="@{/setDefaultPayment}" method="post">
+								<table class="table">
+									<thead>
+									<tr>
+										<th>Default</th>
+										<th>Kreditna kartica</th>
+										<th>Operacije</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr th:each="userPayment : ${userPaymentList}">
+										<td><input type="radio" name="defaultUserPaymentId"
+												   th:value="${userPayment.id}"
+												   th:checked="${userPayment.defaultPayment}" /></td>
+										<td th:text="${userPayment.holderName}"></td>
+										<td><a
+												th:href="@{/updateCreditCard(id=${userPayment.id})}"><i
+												class="fa fa-pencil"></i></a>&nbsp;&nbsp;<a
+												th:href="@{/removeCreditCard(id=${userPayment.id})}"><i
+												class="fa fa-times"></i></a></td>
+									</tr>
+									</tbody>
+								</table>
+								<button class="btn btn-primary" type="submit">Sačuvati</button>
+							</form>
+						</div>
+
+						<div th:if="${addNewCreditCard}">
+							<form th:action="@{addNewCreditCard}" method="post">
+								<div class="bg-info" th:if="${updateUserPaymentInfo}">Podaci o korisniku su ažurirani.</div>
+
+								<input hidden="hidden" name="id" th:value="${userPayment.id}" />
+
+
+								<!-- Informacije kreditne kartice -->
+								<hr />
+								<div class="form-group">
+									<h4>Informacije o kreditnoj kartici</h4>
+								</div>
+								<div class="row">
+									<div class="col-xs-12">
+										<img src="/image/creditcard.png" class="img-responsive" /><br />
+										<div class="form-group">
+											<label for="cardType" style="font-size: x-large;">* Odaberite tip kartice:</label>
+											<select class="form-control" id="cardType" th:name="type" th:value="${userPayment.type}">
+												<option value="visa">Visa</option>
+												<option value="mastercard">Mastercard</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="cardHolder" style="font-size: x-large;">* Ime vlasnika kreditne kartice:</label>
+											<input type="text" class="form-control" id="cardHolder" required="required"
+												   placeHolder = "Ime vlasnika kreditne kartice" th:name="holderName" th:value="${userPayment.holderName}"/>
+										</div>
+										<div class="form-group">
+											<label for="cardNumber" style="font-size: x-large;">* Broj kreditne kartice:</label>
+											<div class="input-group">
+												<input type="tel" class="form-control" id="cardNumber" required="required"
+													   placeHolder = "Broj kreditne kartice" th:name="cardNumber" th:value="${userPayment.cardNumber}"/>
+												<span class="input-group-addon"><i class="fa fa-credit-card" aria-hidden="true"></i></span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-7">
+										<div class="form-group">
+											<label style="font-size: x-large;">* Datum isteka</label>
+											<div class="row">
+												<div class="col-xs-6">
+													<select class="form-control" name="expiryMonth" required="required"
+															th:value="${userPayment.expiryMonth}">
+														<option disabled="disabled">-- Mjesec --</option>
+														<option value="01">Jan (01)</option>
+														<option value="02">Feb (02)</option>
+														<option value="03">Mar (03)</option>
+														<option value="04">Apr (04)</option>
+														<option value="05">May (05)</option>
+														<option value="06">June (06)</option>
+														<option value="07">July (07)</option>
+														<option value="08">Aug (08)</option>
+														<option value="09">Sep (09)</option>
+														<option value="10">Oct (10)</option>
+														<option value="11">Nov (11)</option>
+														<option value="12">Dec (12)</option>
+													</select>
+												</div>
+												<div class="col-xs-6">
+													<select class="form-control" name="expiryYear"
+															th:value="${userPayment.expiryYear}">
+														<option disabled="disabled">-- Godina --</option>
+														<option value="2021">2021</option>
+														<option value="22">2022</option>
+														<option value="23">2023</option>
+														<option value="24">2024</option>
+														<option value="25">2025</option>
+														<option value="26">2026</option>
+														<option value="27">2027</option>
+														<option value="28">2028</option>
+														<option value="29">2029</option>
+														<option value="30">2030</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-5">
+										<div class="form-group">
+											<label for="cardCVC" style="font-size: x-large;">CV Kod</label>
+											<input id="cardCVC" type="tel" class="form-control" name="cvc"
+												   placeholder="CVC" th:name="cvc" th:value="${userPayment.cvc}"/>
+										</div>
+									</div>
+								</div>
+								<hr/>
+								<button type="submit" class="btn btn-primary btn-lg">Sačuvati</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+</div>
+
+<!-- end of container -->
+
+
+<div th:replace="common/header :: footer"/>
+
+<div th:replace="common/header :: body-bottom-scripts" />
+
+</body>
+</html>

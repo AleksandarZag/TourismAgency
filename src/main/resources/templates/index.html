@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+
+<body>
+<div th:replace="common/header :: navbar" />
+
+
+
+<!-- Want To Work Start -->
+<div class="wantToWork-area w-padding">
+    <div class="container">
+        <div class="row align-items-end">
+            <div class="col-xl-5 col-lg-7 col-md-8">
+                <div class="wantToWork-caption">
+                    <h2>Visok kvalitet usluge je nešto što nas prati kroz naše poslovanje.</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Want To Work End -->
+<!-- Our Services Start -->
+<div class="our-services  pt-50 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class=" col-lg-4 col-md-6 col-sm-6">
+                <div class="single-services text-center mb-30">
+                    <div class="services-ion">
+                        <span class="flaticon-experience"></span>
+                    </div>
+                    <div class="services-cap">
+                        <h5>Turistički vodič</h5>
+                        <p>Sa profesionalnim osobljem upoznajte svaku destinaciju u njenom najboljem svjetlu.</p>
+                    </div>
+                </div>
+            </div>
+            <div class=" col-lg-4 col-md-6 col-sm-6">
+                <div class="single-services text-center mb-30">
+                    <div class="services-ion">
+                        <span class="flaticon-pay"></span>
+                    </div>
+                    <div class="services-cap">
+                        <h5>Organizovanje smještaja</h5>
+                        <p>Odaberite smještaj za sebe prema našim preporukama iz bogatog iskustva</p>
+                    </div>
+                </div>
+            </div>
+            <div class=" col-lg-4 col-md-6 col-sm-6">
+                <div class="single-services text-center mb-30">
+                    <div class="services-ion">
+                        <span class="flaticon-good"></span>
+                    </div>
+                    <div class="services-cap">
+                        <h5>Obezbjeđen prevoz</h5>
+                        <p>Obilazite prelijepe destinacije u udobnosti našeg prevoznog sredstva</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Our Services End -->
+<!-- Visit Our Tailor Start -->
+<div class="visit-tailor-area fix">
+    <!--Right Contents  -->
+    <div class="tailor-offers"></div>
+    <!-- left Contents -->
+    <div class="tailor-details">
+        <h3>Obilazak tura sa raznim<br>vrstama prevoznih sredstava</h3>
+        <p style="font-size: 27px;">Uvijek biramo najbolji i <br>najzanimljiviji prevoz.</p>
+        <!-- skill Start -->
+        <div class="skill-ara">
+            <div class="skill">
+                <div class="single-skill">
+                    <div class="progress-count">
+                        <p>Avion</p><span>25%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".5s" aria-valuenow="25" role="progressbar" style="width: 25%"  aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="single-skill">
+                    <div class="progress-count">
+                        <p>Bus</p><span>60%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".7s" role="progressbar" style="width: 60%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="single-skill">
+                    <div class="progress-count">
+                        <p>Brod</p><span>10%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".6s" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="single-skill">
+                    <div class="progress-count">
+                        <p>Voz</p><span>5%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar wow slideInLeft" data-wow-duration="1s" data-wow-delay=".6s" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- skill End -->
+    </div>
+
+</div>
+<!-- Visit Our Tailor End -->
+<!-- Want To Work Start -->
+<div class="wantToWork-area w-padding3">
+    <div class="container">
+        <div class="row align-items-end">
+        </div>
+    </div>
+</div>
+<!-- Want To Work End -->
+<!-- Project Gallery Start -->
+<div class="project-gallery-area">
+    <div class="container-full p-0">
+        <div class="row no-gutters">
+            <div class="col-lg-5 col-md-4">
+                <div class="portfolio-wrapper">
+                   <a th:href="@{/searchByCategory(category='Nedavno',category2='Nedavno',category3='Nedavno', category4='Nedavno')}"> <h2 style="color: #6ecde1;font-family:Cambria; font-size:30px;">Nedavno</h2>
+                    <div class="portfolio-thumb big-img">
+                        <img style="max-height: 100%; max-width: 100%;" th:src="@{/image/walking.jpg}">
+                    </div> </a>
+                </div>
+            </div>
+            <!-- Small Img -->
+            <div class="col-lg-7 col-md-8">
+                <div class="row no-gutters">
+                    <div class="col-lg-5 col-md-6 col-sm-6">
+                        <div class="portfolio-wrapper">
+                       <a th:href="@{/searchByCategory(category='Planine',category2='Planine',category3='Planine', category4='Planine')}">
+                           <h2 style="color: #6ecde1;font-family:Cambria;font-size:30px;">Planine</h2>
+                         <div class="portfolio-thumb small-img" >
+                             <img style="max-height: 100%; max-width: 100%;" th:src="@{/image/planine.jpg}">
+                         </div> </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-6 col-sm-6">
+                        <div class="portfolio-wrapper">
+                           <a th:href="@{/searchByCategory(category='Strane destinacije',category2='Strane destinacije',category3='Strane destinacije', category4='Strane destinacije')}">
+                               <h2 style="color: #6ecde1;font-family:Cambria;font-size:30px;">Strane destinacije</h2>
+                            <div class="portfolio-thumb small-img">
+                                <img style="max-height: 100%; max-width: 100%;" th:src="@{/image/avion.jpg}">
+                            </div> </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-lg-7 col-md-6 col-sm-6">
+                        <div class="portfolio-wrapper">
+                         <a th:href="@{/searchByCategory(category='Mora',category2='Mora',category3='Mora', category4='Mora')}">
+                             <h2 style="color: #6ecde1;font-family:Cambria; font-size:30px;">More</h2>
+                            <div class="portfolio-thumb small-img">
+                                <img style=" max-height: 100%; max-width: 100%;" th:src="@{/image/beach.jpg}">
+                            </div> </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-6 col-sm-6">
+                        <div class="portfolio-wrapper">
+                         <a th:href="@{/searchByCategory(category='Domaći turizam',category2='Domaći turizam',category3='Domaći turizam', category4='Domaći turizam')}">
+                                 <h2 style="color: #6ecde1;font-family:Cambria; font-size:30px;">Domaći turizam</h2>
+                            <div class="portfolio-thumb small-img">
+                                <img style=" max-height: 100%; max-width: 100%;" th:src="@{/image/mostar.jpg}">
+                            </div> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Project Gallery End -->
+<!-- Testimonial Start -->
+<div class="testimonial-area testimonial-padding">
+    <div class="container ">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-11 col-lg-11 col-md-9">
+                <div class="h1-testimonial-active">
+                    <!-- Single Testimonial -->
+                    <div class="single-testimonial text-center">
+                        <!-- Testimonial Content -->
+                        <div class="testimonial-caption ">
+                            <div class="testimonial-top-cap">
+                                <p>Pružiti klijentima nezaboravljivo iskustvo je moto naše kompanije. Iskusite svaku destinaciju u njenom najboljem svjetlu. </p>
+                            </div>
+                            <!-- founder -->
+                            <div class="testimonial-founder d-flex align-items-center justify-content-center">
+                                <div class="founder-img">
+                                    <img style="border-radius: 50%; display: block;margin-left: auto;
+  margin-right: auto;
+  " th:src="@{/image/aleksandar.jpg}">
+                                </div>
+                                <div class="founder-text">
+                                    <span>Aleksandar</span>
+                                    <p>CEO</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonial End -->
+
+
+<!-- Want To Work Start -->
+<div class="wantToWork-area wantToWork-area2 w-padding2">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-xl-8 col-lg-8 col-md-8">
+                <div class="wantToWork-caption wantToWork-caption2">
+                    <h2>Pratite nas na društvenim mrežama.</h2>
+                </div>
+                <a class="btn btn-primary" style="background-color: #3b5998;" href="#!" role="button"
+                ><i class="fab fa-facebook me-2"></i>&nbsp;Facebook</a>
+                <a class="btn btn-primary" style="background-color: #E1306C;" href="#!" role="button"
+                ><i class="fab fa-instagram me-2"></i>&nbsp;Instagram</a>
+                <a class="btn btn-primary" style="background-color: #55acee;" href="#!" role="button"
+                ><i class="fab fa-twitter me-2"></i>&nbsp;Twitter</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Want To Work End -->
+
+
+
+<div th:replace="common/header :: footer"/>
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+
+</html>

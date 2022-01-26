@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header"/>
+
+<body>
+<div th:replace="common/header :: navbar"/>
+<div class="popular-location section-padding30">
+	<div class="container">
+    <div class="row" style="margin-bottom: -100px;">
+    </div>
+    <hr
+            style="position: absolute; width: 85%; height: 6px; background-color: #333; z-index: -1; margin-top: -80px;" />
+
+ <div class="row" style="margin-top:10px;">
+     <div class="col-xs-12">
+         <div class="row">
+             <br/>
+             <div th:if="${notEnoughStock}" class="alert alert-warning">
+                 Oops, neke rezervacije su nedostupne.
+             </div>
+             <div th:if="${emptyReservation}" class="alert alert-warning">
+                 Ops, ništa nismo dodali u Vaše rezervacije, molimo pogledajte ponude i pokušajte ponovo.
+                 <br/><br/>
+             </div>
+             <div class="row">
+				 <div class="col-xs-6 text-left">
+					 <a class="btn btn-primary" style="background-color:#022240;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;" th:href="@{/tourguide}">Nastavite pretraživati ponude</a>
+				 </div>
+				 <div class="col-xs-6 text-right">
+					 <a class="btn btn-primary" style="background-color:#022240;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;" th:href="@{/checkout(id=${reservation.id})}">Dalje</a>
+				 </div>
+                 <div class="col-xs-8"><h4>Rezervacija</h4></div>
+                 <div class="col-xs-2"><h4>Cijena</h4></div>
+                 <div class="col-xs-2"><h4>Količina</h4></div>
+             </div>
+
+
+					<div class="row" th:each="reservationItem : ${reservationItemList}">
+						<form th:action="@{/reservation/updateReservationItem}" method="post">
+							<hr />
+							<div class="col-xs-2">
+								<a th:href="@{tourDetail(id=${reservationItem.tour.id})}">
+                                    <img class="img-responsive guide-tour"
+                                            th:src="@{/image/Tour/}+${reservationItem.tour.id}+'.png'" />
+								</a>
+							</div>
+							<div class="col-xs-6">
+								<div style="margin-left:50px;">
+								<a th:href="@{/tourDetail?id=}+${reservationItem.tour.id}"><h4 th:text="${reservationItem.tour.title}"></h4></a>
+								<p th:if="${reservationItem.tour.quantity&gt;10}"
+									style="color: green;">Mjesta su slobodna</p>
+								<p
+									th:if="${reservationItem.tour.quantity&lt;10 and reservationItem.tour.quantity&gt;0}"
+									style="color: green;">
+									Samo: <span th:text="${reservationItem.tour.quantity}"></span> slobodnih mjesta
+								</p>
+								<p th:if="${reservationItem.tour.quantity==0}"
+									style="color: darkred;">Sva mjesta su popunjena</p>
+								<a th:href="@{/reservation/removeItem?id=}+${reservationItem.id}">Izbriši</a>
+								</div>
+							</div>
+
+							<div class="col-xs-2">
+								<h5 style="color: #db3208; font-size: large;">
+									$<span th:text="${reservationItem.tour.price}"
+										th:style="${reservationItem.tour.quantity}==0? 'text-decoration: line-through' : ''"></span>
+								</h5>
+							</div>
+
+							<div class="col-xs-2">
+								<input hidden="hidden" name="id" th:value="${reservationItem.id}" /> <input
+									th:id="${reservationItem.id}" th:name="qty" th:disabled="${reservationItem.tour.quantity==0}" class="form-control reservationItemQty" th:value="${reservationItem.qty}" />
+								<button style="display: none;"
+									th:id="'update-item-'+${reservationItem.id}" type="submit"
+									class="btn btn-warning btn-xs">Ažuriraj</button>
+							</div>
+						</form>
+					</div>
+
+            <hr/>
+
+            <div class="row">
+                <h4 class="col-xs-12 text-right"><strong style="font-size: large;">Ukupna cijena(<span
+                        th:text="${#lists.size(reservationItemList)}"></span> rezervacija):</strong><span
+                        style="color: #db3208; font-size: large;">&nbsp;KM&nbsp;<span
+                        th:text="${reservation.grandTotal}"></span></span>
+                </h4>
+            </div>
+        </div>
+    </div>
+ </div>
+	</div>
+<!--end of container-->
+</div>
+<div th:replace="common/header :: footer"/>
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" >
+<head th:fragment="common-header">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>Turistička agencija</title>
+
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="/css/cardstyle.css">
+	<link rel="stylesheet" href="/css/imagestyle.css">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="/css/slicknav.css">
+	<link rel="stylesheet" href="/css/flaticon.css">
+	<link rel="stylesheet" href="/css/animate.min.css">
+	<link rel="stylesheet" href="/css/magnific-popup.css">
+	<link rel="stylesheet" href="/css/fontawesome-all.min.css">
+	<link rel="stylesheet" href="/css/themify-icons.css">
+	<link rel="stylesheet" href="/css/slick.css">
+	<link rel="stylesheet" href="/css/nice-select.css">
+	<link rel="stylesheet" href="/css/style.css">
+
+	<link rel="icon" href="/image/logo.png" />
+
+
+</head>
+<body>
+<div th:fragment="navbar">
+	<div class="header-area header_area header-transparent" style="background-color: #010E21;">
+		<div class="main-header">
+			<div class="header-bottom  header-sticky">
+				<div class="container-fluid">
+					<div class="row align-items-center">
+						<!-- Logo -->
+						<div class="col-xl-2 col-lg-1 col-md-1">
+							<div class="logo">
+								<a th:href="@{/}"><img src="/image/logo-header.png" alt=""></a>
+							</div>
+						</div>
+						<div class="col-xl-8 col-lg-8 col-md-8">
+							<!-- Main-menu -->
+							<div class="main-menu f-right d-none d-lg-block">
+								<nav>
+									<ul id="navigation">
+										<li><form class="navbar-form" th:action="@{/searchTour}" method="post">
+											<div class="form-group">
+												<input type="text" name="keyword" class="form-control" style="height:50px;width: 150px;"
+													   placeholder="Naziv destinacije"/>
+											</div>
+											<button type="submit" class="btn btn-default">Pretraži</button>
+										</form> </li>
+										<li><a th:href="@{/}">Home</a></li>
+										<li><a th:href="@{/tourguide}">Kategorije</a>
+											<ul class="submenu">
+												<li><a th:href="@{/tourguide}">Pogledaj sve ponude</a></li>
+												<li><a th:href="@{/searchByCategory(category='Nedavno',category2='Nedavno',category3='Nedavno', category4='Nedavno')}">Nedavno</a></li>
+												<li><a th:href="@{/searchByCategory(category='Aktuelno',category2='Aktuelno',category3='Aktuelno', category4='Aktuelno')}">Aktuelno</a></li>
+												<li><a th:href="@{/searchByCategory(category='Proljeće',category2='Proljeće',category3='Proljeće', category4='Proljeće')}">Proljeće</a></li>
+												<li><a th:href="@{/searchByCategory(category='Ljeto',category2='Ljeto',category3='Ljeto', category4='Ljeto')}">Ljeto</a></li>
+												<li><a th:href="@{/searchByCategory(category='Jesen', category2='Jesen',category3='Jesen', category4='Jesen')}">Jesen</a></li>
+												<li><a th:href="@{/searchByCategory(category='Zima',category2='Zima',category3='Zima', category4='Zima')}">Zima</a></li>
+												<li><a th:href="@{/searchByCategory(category='Domaći turizam',category2='Domaći turizam',category3='Domaći turizam', category4='Domaći turizam')}">Domaći turizam</a></li>
+												<li><a th:href="@{/searchByCategory(category='Strane destinacije',category2='Strane destinacije',category3='Strane destinacije', category4='Strane destinacije')}">Strane destinacije</a></li>
+												<li><a th:href="@{/searchByCategory(category='Planine',category2='Planine',category3='Planine', category4='Planine')}">Planine</a></li>
+												<li><a th:href="@{/searchByCategory(category='Mora',category2='Mora',category3='Mora', category4='Mora')}">Mora</a></li>
+												<li><a th:href="@{/searchByCategory(category='Rafting',category2='Rafting',category3='Rafting', category4='Rafting')}">Rafting</a></li>
+												<li><a th:href="@{/searchByCategory(category='Godišnji odmori',category2='Godišnji odmori',category3='Godišnji odmori', category4='Godišnji odmori')}">Godišnji odmori</a></li>
+											</ul>
+										</li>
+										<li><a th:href="@{/faq}">FAQ</a></li>
+										<li><a th:href="@{/hours}">O nama</a></li>
+										<li><a sec:authorize="isAuthenticated()" th:href="@{/reservation/reservations}">Rezervacije</a></li>
+										<li><a sec:authorize="isAuthenticated()"
+											   th:href="@{/myProfile}">Moj Profil</a></li>
+										<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Odjavi se</a></li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+						<div class="col-xl-2 col-lg-3 col-md-3">
+							<div class="header-right-btn f-right d-none d-lg-block">
+								<a sec:authorize="isAnonymous()" th:href="@{/login}" class="btn header-btn">Prijavi se</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div th:fragment="footer">
+	<footer>
+		<!-- Footer Start-->
+		<div class="footer-area">
+			<div class="container">
+				<div class="footer-top footer-padding">
+					<div class="row justify-content-between">
+						<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+							<div class="single-footer-caption mb-50">
+								<div class="single-footer-caption mb-30">
+									<!-- logo -->
+									<div class="footer-logo">
+										<a th:href="@{/}"><img src="/image/logo.png" alt=""></a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+							<div class="single-footer-caption mb-50">
+								<div class="footer-tittle">
+									<ul>
+										<li><a th:href="@{/hours}">Gdje nas možete naći</a></li>
+										<li><a th:href="@{/faq}">Često postavljana pitanja</a></li>
+										<li><a th:href="@{/hours}">Radno vrijeme</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+							<div class="single-footer-caption mb-50">
+								<div class="footer-tittle">
+									<h4><span>049</span> 515 322</h4>
+									<ul>
+										<li><a href="#">touristbrcko@gmail.com</a></li>
+									</ul>
+									<p>Bulevar Mira 24, Brčko, Bosna i Hercegovina</p>
+								</div>
+								<!-- footer social -->
+								<div class="footer-social">
+									<a href="#"><i class="fab fa-facebook-f"></i></a>
+									<a href="#"><i class="fab fa-twitter"></i></a>
+									<a href="#"><i class="fab fa-instagram"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Footer End-->
+	</footer>
+</div>
+
+
+<div th:fragment="body-bottom-scripts">
+	<script src="/js/vendor/modernizr-3.5.0.min.js"></script>
+	<!-- Jquery, Popper, Bootstrap -->
+	<script src="/js/vendor/jquery-1.12.4.min.js"></script>
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<!-- Jquery Mobile Menu -->
+	<script src="/js/jquery.slicknav.min.js"></script>
+
+	<!-- Jquery Slick , Owl-Carousel Plugins -->
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/slick.min.js"></script>
+	<!-- One Page, Animated-HeadLin -->
+	<script src="/js/wow.min.js"></script>
+	<script src="/js/animated.headline.js"></script>
+	<script src="/js/jquery.magnific-popup.js"></script>
+
+	<!-- Nice-select, sticky -->
+	<script src="/js/jquery.nice-select.min.js"></script>
+	<script src="/js/jquery.sticky.js"></script>
+
+	<!-- contact js -->
+	<script src="/js/contact.js"></script>
+	<script src="/js/jquery.form.js"></script>
+	<script src="/js/jquery.validate.min.js"></script>
+	<script src="/js/mail-script.js"></script>
+	<script src="/js/jquery.ajaxchimp.min.js"></script>
+
+	<!-- Jquery Plugins, main Jquery -->
+	<script src="/js/plugins.js"></script>
+	<script src="/js/main.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header"/>
+
+<body>
+<div th:replace="common/header :: navbar"/>
+<div class="popular-location section-padding30">
+
+<div class="container">
+    <form th:action="@{/reservation/addItem}" method="post">
+    	<input hidden="hidden" th:field="*{tour.id}" />
+    	<div class="row" style="margin-top: 120px;">
+    		<div class="col-xs-3">
+				<a th:href="@{/tourguide}"><span style="font-size:medium; color: #011a96;">Pregledaj ostale ponude</span></a><br/>
+				<img class="img-responsive tour-book" th:src="@{/image/Tour/}+${tour.id}+'.png'" />
+
+			</div>
+
+    		<div class="col-xs-9">
+    			<h3 th:text="${tour.title}">Naziv ponude</h3>
+    			<div class="row">
+    				<div class="col-xs-5">
+    					<p><strong>Datum: </strong><span th:text="${tour.date}"></span></p>
+						<p><strong>Kategorija: </strong><span th:text="${tour.category}+', ' +${tour.category2}+', ' +${tour.category3}+', '+
+                          ${tour.category4}"></span></p>
+					</div>
+    				<div class="col-xs-7">
+    					<div class="panel panel-default" style="border-width: 5px; margin-top: 20px;">
+    						<div class="panel-body">
+    							<div class="row">
+    								<div class="col-xs-6">
+    									<h4>Cijena: <span style="color:#db3208;">&nbsp;KM&nbsp;<span th:text="${tour.price}"></span></span></h4>
+    									<span>Količina: </span>
+    									<select name="qty">
+    										<option th:each="qty : ${qtyList}" th:value="${qty}" th:text="${qty}">
+    										</option>
+    									</select>
+    								</div>
+    								<div class="col-xs-6">
+    									<h4 th:if="*{tour.quantity&gt;10}" style="color: green">Na stanju</h4>
+    									<h4 th:if="*{tour.quantity&lt;10 and tour.quantity&gt;0}" style="color: green">Samo<span th:text="${tour.quantity}"> na stanju</span></h4>
+    									<h4 th:if="*{tour.quantity==0}" style="color:darkred;">Nedostupno</h4>
+    									<button type="submit" class="btn btn-warning" style="color:black;border:1px solid black; padding: 10px 40px 10px 40px;">Rezerviši</button>
+    								</div>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+
+    			<hr/>
+    			<p th:utext="${tour.description}"></p>
+    		</div>
+			<div class="container" id="container-image">
+				<div class="box">
+					<img th:src="@{/image/Tour/}+${tour.id*20}+'.png'">
+				</div>
+				<div class="box">
+					<img th:src="@{/image/Tour/}+${tour.id*30}+'.png'">
+				</div>
+				<div class="box">
+					<img th:src="@{/image/Tour/}+${tour.id*40}+'.png'">
+				</div>
+				<div class="box">
+					<img th:src="@{/image/Tour/}+${tour.id*50}+'.png'">
+
+				</div>
+			</div>
+    	</div>
+    </form>
+</div>
+<!-- end of container -->
+</div>
+<div th:replace="common/header :: footer"/>
+
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+</body>
+</html>

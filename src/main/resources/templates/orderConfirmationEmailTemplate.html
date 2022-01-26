@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+<link href="/css/non-responsive.css" rel="stylesheet" />
+
+<link href="/css/font-awesome.min.css" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="/css/style.css" rel="stylesheet" />
+
+<style>
+	table {
+	border-collapse: collapse;
+	}
+	
+	table, th, td {
+	border:1px solid black;}
+</style>
+</head>
+<body>
+<p>Poštovani, <span th:text="${user.firstName}"></span>,</p>
+<br/>
+<p>Hvala Vam što koristite usluge naše agencije. Nadamo se da ste imali odličnu uslugu!</p>
+<p>Vaš broj narudžbe: <strong>#<span th:text="${order.id}"></span></strong>. Ovdje su detalji narudžbe:</p>
+<h2>Detalji narudžbe #<span th:text="${order.id}"></span></h2>
+<hr/>
+
+<table>
+	<tr>
+		<th>Informacije plaćanja</th>
+	</tr>
+	<tr>
+		<td>
+			<span th:text="${order.payment.holderName}"></span><br/>
+			<span th:text="${order.payment.type}"></span><br/>
+			<span th:text="${order.payment.cardNumber}"></span><br/>
+			<span th:text="${order.payment.expiryMonth}"></span><br/>
+			<span th:text="${order.payment.expiryYear}"></span><br/>
+		</td>
+	</tr>
+</table>
+
+<h3><strong>Sumiranje rezervacije</strong></h3>
+<table>
+<thead>
+	<tr>
+		<td><strong>Ime ture</strong></td>
+		<td class="text-center"><strong>Cijena rezervacije</strong></td>
+		<td class="text-center"><strong>Broj rezervacija</strong></td>
+		<td class="text-right"><strong>Total</strong></td>
+	</tr>
+</thead>
+<tbody>
+	<tr th:each="reservationItem : ${reservationItemList}">
+		<td><span data-th-text="${reservationItem.tour.title}"></span></td>
+		<td class="text-center" data-th-text="${reservationItem.tour.price}"></td>
+		<td class="text-center" data-th-text="${reservationItem.qty}"></td>
+		<td class="text-right" data-th-text="${reservationItem.subtotal}"></td>
+	</tr>
+	<tr>
+		<td class="highrow"></td>
+		<td class="highrow"></td>
+		<td class="highrow text-center"><strong>Ukupno</strong></td>
+		<td class="highrow text-right" data-th-text="${order.orderTotal}"></td>
+	</tr>
+
+</tbody>
+</table>
+
+<br/>
+<p>Lijep pozdrav,</p>
+<p>Turistička agencija</p>
+<p>Since 2021</p>
+</body>
+</html>

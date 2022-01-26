@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/headerAdmin :: common-header" />
+
+<body>
+	<div th:replace="common/headerAdmin :: navbar" />
+	<div class="our-services  pt-50 pb-150">
+
+	<div class="container">
+		<div>
+			<ol class="breadcrumb">
+				<li><a th:href="@{/tour/tourList}"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Nazad</a></li>
+				<li><a th:href="@{/tour/updateTour?id=}+${tour.id}">Uredi</a></li>
+			</ol>
+
+		</div>
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="panel panel-default">
+				<div class="panel-body">
+					<img th:src="@{/image/Tour/}+${tour.id}+'.png'" class="img-responsive center-block">
+				</div>
+				</div>
+			</div>
+			<div class="col-xs-9">
+				<h3 th:text="${tour.title}"></h3>
+				<div class="row">
+					<div class="col-xs-6">
+						<p><strong>Kategorija: </strong><span th:text="${tour.category}+', ' +${tour.category2}+', ' +${tour.category3}+', '+
+                          ${tour.category4}"></span></p>
+						<p><strong>Cijena: </strong><span th:text="${tour.price}"></span></p>
+						<p><strong>Datum ture: </strong><span th:text="${tour.date}"></span></p>
+
+						<p><strong>Broj mjesta: </strong><span th:text="${tour.quantity}"></span></p>
+						<p><Strong>Opis: </Strong><span th:utext="${tour.description}"></span></p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	<div class="container" id="container-image">
+		<div class="box">
+			<img th:src="@{/image/Tour/}+${tour.id}+'.png'">
+		</div>
+		<div class="box">
+			<img th:src="@{/image/Tour/}+${tour.id*30}+'.png'">
+		</div>
+		<div class="box">
+			<img th:src="@{/image/Tour/}+${tour.id*40}+'.png'">
+		</div>
+		<div class="box">
+			<img th:src="@{/image/Tour/}+${tour.id*50}+'.png'">
+
+		</div>
+	</div>
+	</div>
+	<div th:replace="common/headerAdmin :: body-bottom-scripts" />
+</body>
+</html>

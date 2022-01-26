@@ -1,0 +1,136 @@
+ <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header">
+<!--	<link rel="stylesheet" href="/css/tabsstyle.css"> -->
+</head>
+<body>
+<div th:replace="common/header :: navbar" />
+
+
+<div class="categories-area section-padding30">
+	<div class="container">
+		<ul class="nav nav-pills nav-justified" style="background-color: #0b1c39;" >
+			<li class="nav-item nav-link"  th:classappend="${classActiveNewAccount}? 'active'"><a href="#tab-1" data-toggle="tab"><span
+					>Kreiraj novi račun</span></a></li>
+			<li class="nav-item nav-link"  th:classappend="${classActiveLogin}? 'active'"><a href="#tab-2" data-toggle="tab"><span
+					>Prijavi se</span></a></li>
+			<li class="nav-item nav-link" th:classappend="${classActiveForgetPassword}? 'active'"><a href="#tab-3" data-toggle="tab"><span
+					>Zaboravljena šifra</span></a></li>
+		</ul>
+
+
+		<div class="tab-content">
+
+			<!-- kreiranje novog profila -->
+			<div class="tab-pane fade" id="tab-1" th:classappend="${classActiveNewAccount}? 'in active'">
+				<div class="panel-group" style="background-color: white;">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="alert alert-info" th:if="${emailSent}">
+								<h3 style="color: white;">Email je poslan na email adresu sa kojom ste se registrovali. Molimo potvrdite svoj profil i ažurirajte podatke.</h3>
+							</div>
+							<form th:action="@{/newUser}" method="post">
+								<div class="form-group">
+									<label for="newUsername">Korisničko ime:</label>&nbsp;<span
+																								   th:if="${usernameExists}">Korisničko ime je zauzeto, pokušajte neko drugo.</span>
+									<input
+											required="required" type="text" class="form-control"
+											id="newUsername" name="username" />
+									<p>Ukucajte korisničko ime:</p>
+								</div>
+
+								<div class="form-group">
+									<label for="email"> Email adresa:</label>
+									<span
+										  th:if="${emailExists}">Email već postoji, ukucajte neki drugi.</span>
+									<input
+											required="required" type="text" class="form-control"
+											id="email" name="email" />
+									<p style="color: #828282">Validna email adresa. Email adresa neće biti javna,
+										koristiti ćete je samo za promjenu šifre i dolazak obavjesti ako to odaberete</p>
+								</div>
+
+								<button type="submit" class="btn btn-primary">Kreiraj novi profil</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<!-- prijava -->
+			<div class="tab-pane fade" id="tab-2" th:classappend="${classActiveLogin}? 'in active'">
+				<div class="panel-group">
+					<div class="panel panel-default">
+						<div class="panel-body"
+							 >
+							<div th:if="${param.error != null}" style="color:red;">Netačno korisničko ime ili lozinka.</div>
+							<form th:action="@{/login}" method="post">
+								<div class="form-group">
+									<label for="username"><h3 style="font-size: x-large;"> Korisničko ime:</h3> </label> <input
+										required="required" type="text" class="form-control"
+										id="username" name="username" />
+									<p>Ukucajte korisničko ime:</p>
+								</div>
+
+								<div class="form-group">
+									<label for="password"><h3 style="font-size: x-large;" > Lozinka: </h3></label> <input
+										required="required" type="password" class="form-control"
+										id="password" name="password" />
+									<p>Ukucajte lozinku</p>
+								</div>
+
+								<button type="submit" class="btn btn-primary">Prijavi se</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- zaboravljena šifra -->
+			<div class="tab-pane fade" id="tab-3" th:classappend="${classActiveForgetPassword}? 'in active'">
+				<div class="panel-group">
+					<div class="panel panel-default" style="border: none;">
+						<div class="panel-body">
+							<div th:if="${emailNotExist}" class="alert alert-danger"> Email ne postoji. </div>
+							<div th:if="${forgetPasswordEmailSent}" class="alert alert-success"> Email poslan. </div>
+							<form th:action="@{/forgetPassword}" method="post">
+								<div class="form-group">
+									<label for="recoverEmail"><h3 style="font-size: x-large;">* Vaš Email:</h3> </label> <input
+										required="required" type="text" class="form-control"
+										id="recoverEmail" name="email" />
+									<p>Ukucajte email adresu sa kojom ste se registrovali.</p>
+								</div>
+
+								<button type="submit" class="btn btn-primary">Pošalji</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+<div th:replace="common/header :: footer"/>
+
+<div th:replace="common/header :: body-bottom-scripts" />
+
+ <script>
+		$(document).ready(function(){
+		activaTab('tab-2');
+	});
+
+	function activaTab(tab){
+		$('.nav-tabs a[href="#' + tab + '"]').tab('show');
+	};
+ </script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/headerAdmin :: common-header" />
+
+<body>
+	<div th:replace="common/headerAdmin :: navbar" />
+
+	<div class="container">
+		<div class="row">
+			<form class="form-horizontal" th:action="@{/tour/updateTour}" method="post"
+				enctype="multipart/form-data">
+				<fieldset>
+					<legend class="center-block">
+						Ažurirajte podatke o turi<span style="font-size: small"> * je obavezno polje</span>
+					</legend>
+					
+					<input hidden="hidden" name="id" th:value="${tour.id}" />
+
+
+					<!-- naziv -->
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label" for="title">* Naziv</label>
+
+						<div class="col-md-8">
+							<input type="text" name="title" class="form-control" id="title" th:value="${tour.title}"
+								   required="required" placeholder="Naziv"/>
+							<span class="text-muted">Naziv ture</span>
+						</div>
+					</div>
+					<!-- datum ture -->
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label" for="date">Datum ture</label>
+
+						<div class="col-md-8">
+							<input type="date" class="form-control" id="date" name="date"
+								   th:value="${tour.date}" placeholder="Datum"/>
+						</div>
+					</div>
+
+					<!-- kategorija -->
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label" for="category">*
+							Kategorija</label>
+						<div class="col-md-8">
+							<select th:value="${tour.category}" id="category" name="category" class="form-control">
+								<option value="" selected="selected" disabled="disabled">Molimo odaberite kategoriju turističke ponude...</option>
+								<option value="Nedavno" th:selected="(${tour.category4}=='Nedavno')">Nedavno</option>
+								<option value="Aktuelno" th:selected="(${tour.category}=='Aktuelno')">Aktuelno</option>
+								<option value="Proljeće" th:selected="(${tour.category}=='Proljeće')">Proljeće</option>
+								<option value="Ljeto" th:selected="(${tour.category}=='Ljeto')">Ljeto</option>
+								<option value="Jesen" th:selected="(${tour.category}=='Jesen')">Jesen</option>
+								<option value="Zima" th:selected="(${tour.category}=='Zima')">Zima</option>
+								<option value="Jednodnevni izleti" th:selected="(${tour.category}=='Jednodnevni izleti')">Jednodnevni izleti</option>
+								<option value="Domaći turizam" th:selected="(${tour.category}=='Domaći turizam')">Domaći turizam</option>
+								<option value="Strane destinacije" th:selected="(${tour.category}=='Strane destinacije')">Strane destinacije</option>
+								<option value="Planine" th:selected="(${tour.category}=='Planine')">Planine</option>
+								<option value="Mora" th:selected="(${tour.category}=='Mora')">Mora</option>
+								<option value="Rafting" th:selected="(${tour.category}=='Rafting')">Rafting</option>
+								<option value="Godišnji odmori" th:selected="(${tour.category}=='Godišnji odmori')">Godišnji odmori</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label" for="category2">
+							Kategorija br.2</label>
+						<div class="col-md-8">
+							<select th:value="${tour.category2}" id="category2" name="category2" class="form-control">
+								<option value="" selected="selected" disabled="disabled">Molimo odaberite kategoriju turističke ponude...</option>
+								<option value="Nedavno" th:selected="(${tour.category4}=='Nedavno')">Nedavno</option>
+								<option value="Aktuelno" th:selected="(${tour.category2}=='Aktuelno')">Aktuelno</option>
+								<option value="Proljeće" th:selected="(${tour.category2}=='Proljeće')">Proljeće</option>
+								<option value="Ljeto" th:selected="(${tour.category2}=='Ljeto')">Ljeto</option>
+								<option value="Jesen" th:selected="(${tour.category2}=='Jesen')">Jesen</option>
+								<option value="Zima" th:selected="(${tour.category2}=='Zima')">Zima</option>
+								<option value="Jednodnevni izleti" th:selected="(${tour.category2}=='Jednodnevni izleti')">Jednodnevni izleti</option>
+								<option value="Domaći turizam" th:selected="(${tour.category2}=='Domaći turizam')">Domaći turizam</option>
+								<option value="Strane destinacije" th:selected="(${tour.category2}=='Strane destinacije')">Strane destinacije</option>
+								<option value="Planine" th:selected="(${tour.category2}=='Planine')">Planine</option>
+								<option value="Mora" th:selected="(${tour.category2}=='Mora')">Mora</option>
+								<option value="Rafting" th:selected="(${tour.category2}=='Rafting')">Rafting</option>
+								<option value="Godišnji odmori" th:selected="(${tour.category2}=='Godišnji odmori')">Godišnji odmori</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label" for="category3">
+							Kategorija br.3</label>
+						<div class="col-md-8">
+							<select th:value="${tour.category3}" id="category3" name="category3" class="form-control">
+								<option value="" selected="selected" disabled="disabled">Molimo odaberite kategoriju turističke ponude...</option>
+								<option value="Nedavno" th:selected="(${tour.category4}=='Nedavno')">Nedavno</option>
+								<option value="Aktuelno" th:selected="(${tour.category3}=='Aktuelno')">Aktuelno</option>
+								<option value="Proljeće" th:selected="(${tour.category3}=='Proljeće')">Proljeće</option>
+								<option value="Ljeto" th:selected="(${tour.category3}=='Ljeto')">Ljeto</option>
+								<option value="Jesen" th:selected="(${tour.category3}=='Jesen')">Jesen</option>
+								<option value="Zima" th:selected="(${tour.category3}=='Zima')">Zima</option>
+								<option value="Jednodnevni izleti" th:selected="(${tour.category3}=='Jednodnevni izleti')">Jednodnevni izleti</option>
+								<option value="Domaći turizam" th:selected="(${tour.category3}=='Domaći turizam')">Domaći turizam</option>
+								<option value="Strane destinacije" th:selected="(${tour.category3}=='Strane destinacije')">Strane destinacije</option>
+								<option value="Planine" th:selected="(${tour.category3}=='Planine')">Planine</option>
+								<option value="Mora" th:selected="(${tour.category3}=='Mora')">Mora</option>
+								<option value="Rafting" th:selected="(${tour.category3}=='Rafting')">Rafting</option>
+								<option value="Godišnji odmori" th:selected="(${tour.category3}=='Godišnji odmori')">Godišnji odmori</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label" for="category4">
+							Kategorija br.4</label>
+						<div class="col-md-8">
+							<select th:value="${tour.category4}" id="category4" name="category4" class="form-control">
+								<option value="" selected="selected" disabled="disabled">Molimo odaberite kategoriju turističke ponude...</option>
+								<option value="Nedavno" th:selected="(${tour.category4}=='Nedavno')">Nedavno</option>
+								<option value="Aktuelno" th:selected="(${tour.category4}=='Aktuelno')">Aktuelno</option>
+								<option value="Proljeće" th:selected="(${tour.category4}=='Proljeće')">Proljeće</option>
+								<option value="Ljeto" th:selected="(${tour.category4}=='Ljeto')">Ljeto</option>
+								<option value="Jesen" th:selected="(${tour.category4}=='Jesen')">Jesen</option>
+								<option value="Zima" th:selected="(${tour.category4}=='Zima')">Zima</option>
+								<option value="Jednodnevni izleti" th:selected="(${tour.category4}=='Jednodnevni izleti')">Jednodnevni izleti</option>
+								<option value="Domaći turizam" th:selected="(${tour.category4}=='Domaći turizam')">Domaći turizam</option>
+								<option value="Strane destinacije" th:selected="(${tour.category4}=='Strane destinacije')">Strane destinacije</option>
+								<option value="Planine" th:selected="(${tour.category4}=='Planine')">Planine</option>
+								<option value="Mora" th:selected="(${tour.category4}=='Mora')">Mora</option>
+								<option value="Rafting" th:selected="(${tour.category4}=='Rafting')">Rafting</option>
+								<option value="Godišnji odmori" th:selected="(${tour.category4}=='Godišnji odmori')">Godišnji odmori</option>
+							</select>
+						</div>
+					</div>
+
+					<!-- cijena -->
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label" for="price">Cijena</label>
+
+						<div class="col-md-8">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">KM</span>
+								</div>
+								<input th:value="${tour.price}" type="number" name="price" step="1"
+									   class="form-control" id="price" placeholder="Cijena"/>
+							</div>
+							<span class="text-muted">Cijena ponude</span>
+						</div>
+					</div>
+
+
+					<!-- broj mjesta -->
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label" for="quantity">Broj</label>
+
+						<div class="col-md-8">
+							<input th:value="${tour.quantity}" type="number" name="quantity" class="form-control"
+								   id="quantity" placeholder="Broj mjesta"/>
+							<span class="text-muted">Broj mjesta:</span>
+						</div>
+					</div>
+
+					<!-- status  -->
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label">Status</label>
+
+						<div class="col-md-8">
+							<div>
+								<label><input value="true" type="radio" name="active" checked="checked"/>Dostupno</label>
+								<label><input value="false" type="radio" name="active"/>Nedostupno</label>
+							</div>
+							<span class="text-muted">Dostupnost ture</span>
+						</div>
+					</div>
+
+					<!-- opis -->
+					<div class="form-group row">
+						<label class="col-md-2 col-form-label" for="description">Opis</label>
+
+						<div class="col-md-8">
+                        <textarea name="description" class="form-control" rows="5" id="description"
+								  th:value="${tour.description}" placeholder="Opis"></textarea>
+							<span class="text-muted">Opis ture</span>
+						</div>
+					</div>
+
+					<!-- dodavanje slike -->
+					<div class="form-group row">
+						<div class="col-md-2">
+							<label for="tourImage">Dodaj sliku ponude</label>
+						</div>
+						<div class="col-md-8">
+							<input id="tourImage" style=" background: #e79292;
+  color: #000000;
+  padding: 1em;"
+								   type="file" name="tourImage" th:value="${tour.tourImage}"/>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class="col-md-2">
+							<label for="tourImage2">Dodaj 2. sliku ponude</label>
+						</div>
+						<div class="col-md-8">
+							<input id="tourImage2" style=" background: #e79292;
+  color: #000000;
+  padding: 1em;"
+								   type="file" name="tourImage2" th:value="${tour.tourImage2}"/>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class="col-md-2">
+							<label for="tourImage3">Dodaj 3. sliku ponude</label>
+						</div>
+						<div class="col-md-8">
+							<input id="tourImage3" style=" background: #e79292;
+  color: #000000;
+  padding: 1em;"
+								   type="file" name="tourImage3" th:value="${tour.tourImage3}"/>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-md-2">
+							<label for="tourImage4">Dodaj 4. sliku ture</label>
+						</div>
+						<div class="col-md-8">
+							<input id="tourImage4" style=" background: #e79292;
+  color: #000000;
+  padding: 1em;"
+								   type="file" name="tourImage4" th:value="${tour.tourImage4}"/>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class="col-md-2">
+							<label for="tourImage5">Dodaj 5. sliku ture</label>
+						</div>
+						<div class="col-md-8">
+							<input id="tourImage5" style=" background: #e79292;
+  color: #000000;
+  padding: 1em;"
+								   type="file" name="tourImage5" th:value="${tour.tourImage5}"/>
+						</div>
+					</div>
+
+
+					<div class="form-group row">
+						<div class="col-md-2">
+						</div>
+						<div class="col-md-8 row">
+							<button type="submit" class="btn btn-success">Sačuvaj Turu</button>
+							<a class="btn btn-danger" th:href="@{/tour/tourList}">Poništi</a>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+
+
+
+		<div th:replace="common/headerAdmin :: body-bottom-scripts" />
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+
+<body>
+<div th:replace="common/header :: navbar" />
+
+<div class="popular-location section-padding30">
+<section class="wrapper" style="margin-top: 20px">
+	<div class="container-fostrap">
+		<div class="content">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-4" th:each="tour : ${tourList}">
+						<div class="card">
+							<a class="img-card" th:href="@{/tourDetail?id=}+${tour.id}">
+								<img th:src="@{image/Tour/}+${tour.id}+'.png'" />
+							</a>
+							<div class="card-content">
+								<h4 class="card-title">
+									<a th:href="@{/tourDetail?id=}+${tour.id}"
+									   th:text="${tour.title}">
+									</a>
+								</h4>
+								<a th:href="@{/tourDetail?id=}+${tour.id}"><p class="product-text" th:utext="${#strings.abbreviate(tour.description, 40)}"></p>
+								</a>
+							</div>
+							<div class="card-read-more">
+								<a th:href="@{/tourDetail?id=}+${tour.id}"><span
+										style="font-size:medium; color: #0c1a1e;"><span
+										th:text="${#numbers.formatDecimal(tour.price, 0 , 'COMMA', 2, 'POINT')}"></span>&nbsp;KM&nbsp;</span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</div>
+
+
+<div th:replace="common/header :: footer"/>
+<div th:replace="common/header :: body-bottom-scripts" />
+
+</body>
+</html>
